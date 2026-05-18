@@ -1,53 +1,127 @@
-# CompEcon Project Template 
+# EmpEconGrowthReplication
 
-This is the replication project template. 
+Julia replication project for:
 
-## Step Number 1
+**Cervellati, Meyerheim, and Sunde — “The Empirics of Economic Growth over Time and across Nations: A Unified Growth Perspective”**
 
-* Click top right on `use this template`, then `create a new repository`.
-* Choose a suitable name for your replication project.
-* Clone your new repository to your computer.
-* Open this locally in VScode.
+This package reproduces the model simulations and Figures 1–5.
 
-(you get a nice preview of this document in VScode by executing command `Markdown: Open preview` - type this into the command 😉 )
+Replication by Nicola Foglia.
 
-This page should contain concise information for how to
+## Project structure
 
-1. install your julia package
-2. run the unit tests
-3. run the replication output (there needs to be a single entry point that runs everything, ideally called `run_all()`)
-4. gives instructions for how to compile and where to see your replication [report](report.qmd). See [https://quarto.org](https://quarto.org) for instructions for how to use quarto.
+```text
+RepEmpiricsEconomicGrowth\
+├── data\                          # input data
+├── output\                        # simulated model outputs
+├── replication_results\           # replicated figures
+├── EmpEconGrowthReplication\
+│   ├── src\
+│   │   ├── EmpEconGrowthReplication.jl
+│   │   ├── simulation.jl
+│   │   └── figures.jl
+│   ├── test\
+│   │   └── runtests.jl
+│   ├── Project.toml
+│   └── Manifest.toml
+├── run_all.jl                     # main execution script
+├── README.md
+├── report.qmd
+└── replication-package\           # original files
+```
 
-## First steps
+## How to install
 
-1. Copy the original replication package into the folder `replication-package`
-2. (optional) follow instructions in `replication-package` to replicate desired exhibits
-3. set up your julia package in this repo. To do so, start the julia REPL in this location (alt-J alt-O, otherwise look in command palette)
-4. Choose a name for your replication package, for example `XYZ.jl` (choose something better and replace `XYZ` throughout with your choice!)
-5. Generate your julia package in this directory with
-   
-    ```julia
-    using Pkg
-    Pkg.generate("XYZ.jl")
-    ```
-6. In the VScode file browser on the left, investigate the newly created directory
-7. Activate your package:
-   
-    ```julia
-    julia> Pkg.activate("XYZ.jl")
+From RepEmpiricsEconomicGrowth\EmpEconGrowthReplication\:
 
-    # load it
-    julia> using XYZ
+### from Julia REPL
 
-    # run function
-    julia> XYZ.greet()
-    Hello World!
-    ```
-8. Edit the code in `XYZ.jl/src/XYZ.jl`, maybe adding a word to the greet function. Save the file. Call the function again.
-   
-    ```julia
-    julia> XYZ.greet()
-    Hello World, Earthlings!
-    ```
+```
+using Pkg
+Pkg.activate(".")
+Pkg.instantiate()
+```
 
+## How to run
 
+From RepEmpiricsEconomicGrowth\:
+
+### Option 1 — from terminal
+
+```
+julia run_all.jl
+```
+
+### Option 2 — from Julia REPL
+
+```
+include("run_all.jl")
+```
+
+## Outputs
+
+All simulated model outputs are saved in:
+
+```
+output\
+```
+
+All replicated figures are saved in:
+
+```
+replication_results\
+```
+
+## How to test
+
+From RepEmpiricsEconomicGrowth\EmpEconGrowthReplication\:
+
+### from Julia REPL
+
+```
+using Pkg
+Pkg.activate(".")
+Pkg.test()
+```
+
+## How to compile the report
+
+From RepEmpiricsEconomicGrowth\:
+
+### from terminal
+
+```
+quarto render report.qmd
+```
+
+## Requirements
+
+- Datasets used in the original analysis - .dta format
+
+- No explicit hardware or time requirements specified.
+
+---
+
+## My Setup
+
+- Machine: Windows laptop  
+- CPU: 12th Gen Intel Core i7-1255U
+- RAM: 16 GB
+- OS: Windows 11  
+
+Software used:
+
+- Julia 1.12
+- Main Packages:
+  - DataFrames
+  - CSV
+  - ReadStatTables
+  - Plots
+  - Statistics
+- Visual Studio Code 
+- VSC Extensions:
+  - Julia
+  - Quarto
+  - vscode-pdf
+
+All computations run locally and complete within a few seconds.
