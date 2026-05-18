@@ -174,13 +174,13 @@ The model reproduces the timing of the education take-off. Empirical enrollment 
 
 ## Images
 
-The figures below compare the replicated figures produced by the Julia package. The replicated figures are saved in `replication_results/`.
+The figures below compare the replicated figures produced by the Julia package. The replicated figures are saved in `images/`.
 
 ::: {#fig-1 layout-ncol=2}
 
-![Figure 1a](replication_results/Figure_1a.png)
+![Figure 1a](images/Figure_1a.png)
 
-![Figure 1b](replication_results/Figure_1b.png)
+![Figure 1b](images/Figure_1b.png)
 
 Figure 1: Dynamics of State Variables.
 
@@ -189,9 +189,9 @@ Figure 1: Dynamics of State Variables.
 
 ::: {#fig-2 layout-ncol=2}
 
-![Figure 2a](replication_results/Figure_2a.png)
+![Figure 2a](images/Figure_2a.png)
 
-![Figure 2b](replication_results/Figure_2b.png)
+![Figure 2b](images/Figure_2b.png)
 
 Figure 2: Income and Population Growth Rates - Simulated vs Actual.
 
@@ -200,9 +200,9 @@ Figure 2: Income and Population Growth Rates - Simulated vs Actual.
 
 ::: {#fig-3 layout-ncol=2}
 
-![Figure 3a](replication_results/Figure_3a.png)
+![Figure 3a](images/Figure_3a.png)
 
-![Figure 3b](replication_results/Figure_3b.png)
+![Figure 3b](images/Figure_3b.png)
 
 Figure 3: Income and Population - Simulated vs Actual.
 
@@ -211,9 +211,9 @@ Figure 3: Income and Population - Simulated vs Actual.
 
 ::: {#fig-4 layout-ncol=2}
 
-![Figure 4a](replication_results/Figure_4a.png)
+![Figure 4a](images/Figure_4a.png)
 
-![Figure 4b](replication_results/Figure_4b.png)
+![Figure 4b](images/Figure_4b.png)
 
 Figure 4: Income and Population - Alternative Scenario.
 
@@ -222,9 +222,9 @@ Figure 4: Income and Population - Alternative Scenario.
 
 ::: {#fig-5 layout-ncol=2}
 
-![Figure 5a](replication_results/Figure_5a.png)
+![Figure 5a](images/Figure_5a.png)
 
-![Figure 5b](replication_results/Figure_5b.png)
+![Figure 5b](images/Figure_5b.png)
 
 Figure 5: Human Capital - Simulated vs Actual.
 
