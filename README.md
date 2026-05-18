@@ -14,7 +14,7 @@ Replication by Nicola Foglia.
 RepEmpiricsEconomicGrowth\
 ├── data\                          # input data
 ├── output\                        # simulated model outputs
-├── replication_results\           # replicated figures
+├── images\                        # replicated figures
 ├── EmpEconGrowthReplication\
 │   ├── src\
 │   │   ├── EmpEconGrowthReplication.jl
@@ -69,7 +69,7 @@ output\
 All replicated figures are saved in:
 
 ```
-replication_results\
+images\
 ```
 
 ## How to test
