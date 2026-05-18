@@ -21,8 +21,6 @@ This report was created as part of the assessment for the [`Computational Econom
 
 :::
 
-> {REPLICATOR} Every line which looks like this one, that is, it starts with {REPLICATOR} and has this formatting (there is a grey bar on the left 👀), is an **instruction for you, the replicator**. When you are done with editing this file, _there should be no such line left_ - you should delete all of them.
-
 ## Paper and Replication Package
 
 This report attempts a replication of 
