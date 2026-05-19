@@ -172,10 +172,10 @@ function simulate_model(; base::Bool, under::Bool, ext::Bool, outfile::String)
     should_restart = true
     start = 1
 
-    # loop over eta until until all countries match education take-off and demographic transition
     while should_restart
         should_restart = false
 
+        # loop to find country-specific eta 
         for j in start:count
             at_j = Int((demog_years[j] - init) / gen) - 1
 
@@ -205,30 +205,30 @@ function simulate_model(; base::Bool, under::Bool, ext::Bool, outfile::String)
             for i in 1:T
                 year[i, j] = i * gen + init
 
-                Y_U[i, j] = L[i, j]^alpha * (A_U[i, j] * X)^(1 - alpha)
-                Y_S[i, j] = H[i, j]^beta * (A_S[i, j] * K[i, j])^(1 - beta)
+                Y_U[i, j] = L[i, j]^alpha * (A_U[i, j] * X)^(1 - alpha)                      # unskilled production
+                Y_S[i, j] = H[i, j]^beta * (A_S[i, j] * K[i, j])^(1 - beta)                  # skilled production
                 Y[i, j] = Y_U[i, j] + Y_S[i, j]
                 y[i, j] = Y[i, j] / N[i, j]
-                theta[i, j] = Y_S[i, j] / Y[i, j]
-                w_L[i, j] = (A_U[i, j] * X / L[i, j])^(1 - alpha)
-                w_H[i, j] = beta * (A_S[i, j] * K[i, j] / H[i, j])^(1 - beta)
-                R[i, j] = (1 - beta) * (H[i, j] / K[i, j])^beta * A_S[i, j]^(1 - beta)
+                theta[i, j] = Y_S[i, j] / Y[i, j]                                            # share of skilled production in total production
+                w_L[i, j] = (A_U[i, j] * X / L[i, j])^(1 - alpha)                            # unskilled wage
+                w_H[i, j] = beta * (A_S[i, j] * K[i, j] / H[i, j])^(1 - beta)                # skilled wage
+                R[i, j] = (1 - beta) * (H[i, j] / K[i, j])^beta * A_S[i, j]^(1 - beta)       # return to capital
 
                 if ext && i >= 3
                     error("Technology diffusion extension not implemented")
                 else
-                    A_S[i + 1, j] =
+                    A_S[i + 1, j] =                                                          # skilled productivity
                         phi_S *
                         (1 + sigma_S * (h[i, j] - hc(0)) +
                          psi * (h[i, j] - max(i == 1 ? hc(0) : h[i - 1, j], hc(0)))) *
                         A_S[i, j]
                 end
 
-                e[i + 1, j] = max(educ(A_S[i + 1, j], w_L[i, j]), 0)
-                h[i + 1, j] = hc(e[i + 1, j])
+                e[i + 1, j] = max(educ(A_S[i + 1, j], w_L[i, j]), 0)                         # education
+                h[i + 1, j] = hc(e[i + 1, j])                                                # human capital
 
                 if under
-                    A_U[i + 1, j] =
+                    A_U[i + 1, j] =                                                          # unskilled production
                         phi_U *
                         (1 + sigma_U * (h[i, j] - hc(0)) +
                          psi * (h[i, j] - max(i == 1 ? hc(0) : h[i - 1, j], hc(0)))) *
@@ -241,9 +241,8 @@ function simulate_model(; base::Bool, under::Bool, ext::Bool, outfile::String)
                         A_U[i, j]
                 end
 
-                s[i, j] = sav(e[i + 1, j], A_S[i + 1, j], w_L[i, j])
-                n[i, j] = fer(e[i + 1, j], A_S[i + 1, j], w_L[i, j])
-
+                s[i, j] = sav(e[i + 1, j], A_S[i + 1, j], w_L[i, j])         # savings
+                n[i, j] = fer(e[i + 1, j], A_S[i + 1, j], w_L[i, j])         # fertility 
                 L[i + 1, j] = n[i, j] * L[i, j]
                 N[i + 1, j] = (1 + n[i, j]) * L[i, j]
                 H[i + 1, j] = hc(e[i + 1, j]) * L[i, j]
